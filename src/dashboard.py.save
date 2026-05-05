@@ -1,0 +1,28 @@
+import streamlit as st
+import pandas as pd
+import plotly.express as px
+from sqlalchemy import create_engine
+
+engine = create_engine('postgresql://postgres:1234@localhost:5432/iot_db')
+
+def load_data(view_name):
+    return pd.read_sql(f"SELECT * FROM {view_name}", engine)
+
+st.write(df1)
+t.title('Dashboard de Temperaturas IoT')
+
+st.header('Média de Temperatura por Dispositivo')
+df1 = df.groupby('device', as_index=False)['avg_temp'].mean()
+df1['avg_temp'] = pd.to_numeric(df1['avg_temp'], errors='coerce')
+fig1 = px.bar(df1, x='device', y='avg_temp')
+st.plotly_chart(fig1)
+
+st.header('Leituras por Hora')
+df2 = load_data('leituras_por_hora')
+fig2 = px.line(df2, x='hora', y='contagem')
+st.plotly_chart(fig2)
+
+st.header('Temp Max e Min por Dia')
+df3 = load_data('temp_max_min_por_dia')
+fig3 = px.line(df3, x='data', y=['temp_max','temp_min'])
+st.plotly_chart(fig3)

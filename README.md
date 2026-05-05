@@ -129,13 +129,13 @@ http://localhost:8501
 ## 📊 Dashboard
 
 ### Média de Temperatura por Dispositivo
-![Média](docs/images/media_temp.jpg)
+![Média](docs/images/media_temp.jpg.jpg)
 
 ### Leituras por Hora
-![Leituras](docs/images/leituras_hora.jpg)
+![Leituras](docs/images/leituras_hora.jpg.jpg)
 
 ### Temperatura Máxima e Mínima por Dia
-![Temp](docs/images/temp_max_min.jpg)
+![Temp](docs/images/temp_max_min.jpg.jpg)
 
 🔥 Ajuste EXTRA
 

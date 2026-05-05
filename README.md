@@ -1,29 +1,145 @@
-# 🚀 Pipeline de Dados IoT
+# 📊 Pipeline de Dados com IoT e Docker
 
-Projeto de engenharia de dados que realiza ingestão, transformação e visualização de dados de sensores IoT.
+## 🚀 Descrição do Projeto
+Este projeto implementa um pipeline de dados utilizando dispositivos IoT para coleta de temperatura, com processamento em Python, armazenamento em PostgreSQL via Docker e visualização com Streamlit.
 
-## 🧰 Tecnologias
+---
+
+## 🛠 Tecnologias Utilizadas
 - Python
 - Pandas
+- SQLAlchemy
 - PostgreSQL
+- Docker
 - Streamlit
 - Plotly
-- Docker
 
-## ⚙️ Funcionalidades
-- ETL de dados CSV
-- Armazenamento em banco de dados
-- Criação de views analíticas
-- Dashboard interativo
+---
 
-## ▶️ Como executar
+## 📁 Estrutura do Projeto
+
+pipeline-iot/
+│
+├── data/ # Arquivo CSV (Kaggle)
+├── src/
+│ ├── etl.py # Script de processamento
+│ ├── dashboard.py # Dashboard Streamlit
+│
+├── requirements.txt
+└── README.md
+
+
+---
+
+## ⚙️ Como Executar o Projeto
+
+### 1. Clonar o repositório
 
 ```bash
-# ativar ambiente
+git clone https://github.com/SEU_USUARIO/pipeline-iot.git
+cd pipeline-iot
+```
+
+### 2. Criar e ativar ambiente virtual
+
+```bash
+python3 -m venv venv
 source venv/bin/activate
+```
 
-# rodar ETL
+### 3. Instalar dependências
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Subir o PostgreSQL com Docker
+
+Se for a primeira vez:
+
+```bash
+docker run --name postgres-iot \
+-e POSTGRES_PASSWORD=1234 \
+-e POSTGRES_DB=iot_db \
+-p 5432:5432 \
+-d postgres
+```
+
+Se o container já existir:
+
+```bash
+docker start postgres-iot
+```
+
+### 5. Executar o ETL (inserir dados)
+
+```bash
 python src/etl.py
+```
 
-# rodar dashboard
+### 6. Rodar o Dashboard
+
+```bash
 streamlit run src/dashboard.py
+```
+
+### 7. Acessar no navegador
+
+```
+http://localhost:8501
+```
+
+
+🔥 Ajuste EXTRA
+
+Verificar dados no banco
+docker exec -it postgres-iot psql -U postgres -d iot_db
+
+E dentro do psql:
+SELECT COUNT(*) FROM temperature_readings;
+
+
+📊 Views SQL Criadas
+
+🔹 1. Média de Temperatura por Dispositivo
+SELECT "room_id/id" AS device, AVG(temp) AS avg_temp
+FROM temperature_readings
+GROUP BY device;
+
+🔹 2. Leituras por Hora
+SELECT EXTRACT(HOUR FROM TO_TIMESTAMP(noted_date, 'DD-MM-YYYY HH24:MI')) AS hora,
+COUNT(*) AS contagem
+FROM temperature_readings
+GROUP BY hora
+ORDER BY hora;
+
+🔹 3. Temperatura Máx e Mín por Dia
+SELECT DATE(TO_TIMESTAMP(noted_date, 'DD-MM-YYYY HH24:MI')) AS data,
+MAX(temp) AS temp_max,
+MIN(temp) AS temp_min
+FROM temperature_readings
+GROUP BY data
+ORDER BY data;
+
+📈 Insights
+
+A temperatura média varia conforme o ambiente (interno/externo)
+Horários específicos apresentam maior volume de leitura
+Há variações térmicas significativas ao longo dos dias
+
+
+📦 Fonte dos Dados
+
+Kaggle - Temperature Readings IoT Devices
+
+
+---
+
+Depois:
+
+```bash
+git add README.md
+git commit -m "README profissional"
+git push
+
+

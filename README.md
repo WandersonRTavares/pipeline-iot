@@ -89,6 +89,43 @@ streamlit run src/dashboard.py
 http://localhost:8501
 
 ```
+
+
+### Executar o projeto forma 2 no meu caso pelo terminal powershell (como adm)
+
+No PowerShell, digite:
+       wsl
+✔️ Resultado esperado:
+       Você verá algo assim:
+
+nomeDEusuario@DESKTOP-xxxx:~$
+
+👉 Agora você está no Linux (onde seu projeto funciona)
+
+📂 PASSO 2 — IR PARA O PROJETO
+cd ~/pipeline-iot
+
+Confirma:
+ls
+
+Deve aparecer:
+src
+venv
+
+🧪 PASSO 3 — ATIVAR AMBIENTE
+source venv/bin/activate
+
+🚀 PASSO 4 — RODAR STREAMLIT (SEM DOCKER POR ENQUANTO)
+streamlit run src/dashboard.py
+
+🌐 PASSO 5 — ABRIR NO NAVEGADOR
+
+👉 No Windows (Mozzila/Chrome/Edge):
+
+http://localhost:8501
+
+
+
 ## 📊 Dashboard
 
 ### Média de Temperatura por Dispositivo

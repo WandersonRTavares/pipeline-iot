@@ -87,8 +87,18 @@ streamlit run src/dashboard.py
 
 ```
 http://localhost:8501
-```
 
+```
+## 📊 Dashboard
+
+### Média de Temperatura por Dispositivo
+![Média](docs/images/media_temp.jpg)
+
+### Leituras por Hora
+![Leituras](docs/images/leituras_hora.jpg)
+
+### Temperatura Máxima e Mínima por Dia
+![Temp](docs/images/temp_max_min.jpg)
 
 🔥 Ajuste EXTRA
 

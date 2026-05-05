@@ -111,26 +111,28 @@ SELECT COUNT(*) FROM temperature_readings;
 
 📊 Views SQL Criadas
 
-🔹 1. Média de Temperatura por Dispositivo
+-- Média por dispositivo
+CREATE VIEW avg_temp_por_dispositivo AS
 SELECT "room_id/id" AS device, AVG(temp) AS avg_temp
 FROM temperature_readings
-GROUP BY device;
+GROUP BY "room_id/id";
 
-🔹 2. Leituras por Hora
+-- Leituras por hora
+CREATE VIEW leituras_por_hora AS
 SELECT EXTRACT(HOUR FROM TO_TIMESTAMP(noted_date, 'DD-MM-YYYY HH24:MI')) AS hora,
-COUNT(*) AS contagem
+       COUNT(*) AS contagem
 FROM temperature_readings
 GROUP BY hora
 ORDER BY hora;
 
-🔹 3. Temperatura Máx e Mín por Dia
+-- Máx e mín por dia
+CREATE VIEW temp_max_min_por_dia AS
 SELECT DATE(TO_TIMESTAMP(noted_date, 'DD-MM-YYYY HH24:MI')) AS data,
-MAX(temp) AS temp_max,
-MIN(temp) AS temp_min
+       MAX(temp) AS temp_max,
+       MIN(temp) AS temp_min
 FROM temperature_readings
 GROUP BY data
 ORDER BY data;
-
 📈 Insights
 
 A temperatura média varia conforme o ambiente (interno/externo)

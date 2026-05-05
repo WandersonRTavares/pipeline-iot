@@ -36,7 +36,7 @@ pipeline-iot/
 ### 1. Clonar o repositório
 
 ```bash
-git clone https://github.com/SEU_USUARIO/pipeline-iot.git
+git clone https://github.com/WandersonRTavares/pipeline-iot.git
 cd pipeline-iot
 ```
 
